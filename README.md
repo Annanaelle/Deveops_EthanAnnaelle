@@ -65,6 +65,74 @@ docker compose down
 
 
 # 6.Kubernetes
+Kubernetes, often abbreviated as K8s, is an open-source platform designed to automate the deployment, scaling, and management of containerized applications. It provides a framework to run distributed systems resiliently, ensuring the availability and scalability of applications.
+
+## Installation of Kubernetes cluster in minikube
+After the installation of minikube and kubectl on the computer, let's execute this command lines :
+
+```bash
+minikube start
+```
+<img width="857" alt="image" src="https://github.com/user-attachments/assets/5f0b5312-d920-4c17-a60b-9a5365374aa9" />
+
+```bash
+minikube status
+```
+<img width="670" alt="image" src="https://github.com/user-attachments/assets/f8313425-a4f2-4503-a842-b008bc068c67" />
+
+Then, lets deploy the different needed tools to finally deploy the application :
+```bash
+kubectl apply -f redis-pv.yaml
+```
+<img width="800" alt="image" src="https://github.com/user-attachments/assets/4d6616b2-6c5f-448d-819a-a06fe057aca2" />
+
+```bash
+kubectl apply -f redis-pvc.yaml
+```
+<img width="795" alt="image" src="https://github.com/user-attachments/assets/379c0fbc-7338-4368-9778-85acd781467e" />
+
+```bash
+kubectl apply -f service.yaml
+```
+<img width="791" alt="image" src="https://github.com/user-attachments/assets/bea9025e-7121-4dfd-91d4-fdc0848e100b" />
+
+```bash
+kubectl apply -f deployment.yaml
+```
+<img width="816" alt="image" src="https://github.com/user-attachments/assets/4a5ef480-202c-4c55-b538-2d0ac075fbcf" />
+
+To check if the deployment works well
+```bash
+kubectl get pods
+```
+<img width="554" alt="image" src="https://github.com/user-attachments/assets/93d3c5cc-5c47-464b-a9c1-0bd7721d2174" />
+
+```bash
+kubectl logs nodejs-app-deployment-69cb8f9d85-tb2cg
+```
+<img width="808" alt="image" src="https://github.com/user-attachments/assets/52b889ab-7cac-4dcf-b4ea-7f75b563faa2" />
+
+```bash
+kubectl logs redis-deployment-74dd9754c8-s8pwv
+```
+<img width="917" alt="image" src="https://github.com/user-attachments/assets/a9c4ead3-40e1-466e-be5d-8a3d5862f89b" />
+
+To open the Nodejs pod on port 3000 :
+```bash
+minikube service nodejs-app-service
+```
+<img width="959" alt="image" src="https://github.com/user-attachments/assets/795637d2-180a-4463-b7da-a5988effb2a3" />
+<img width="959" alt="image" src="https://github.com/user-attachments/assets/1e8a3a03-fc88-41bc-84b0-4ca2fde3473d" />
+
+Finally, if you want to delete the deployment and the application, you only have to :
+```bash
+kubectl delete deployment redis-deployment
+kubectl delete deployment nodejs-app-deployment
+kubectl delete service nodejs-app-service
+kubectl delete service redis-service
+kubectl delete pvc redis-pvc
+kubectl delete pv redis-pv
+```
 
 # 7.Istio
 

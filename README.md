@@ -135,4 +135,18 @@ kubectl delete pv redis-pv
 ```
 
 # 7.Istio
+After the installation of isio, we go in its repertory 
+```bash
+cd istio
+```
+
+Firt we have to delete minikube from istio
+```bash
+minikube delete
+```
+Then, give more ressources to istio, and run :
+```bash
+minikube start --cpus 6 --memory 8192
+```
+<img width="853" alt="image" src="https://github.com/user-attachments/assets/776402a9-1b2e-4ea6-b249-3c68ebc7503b" />
 

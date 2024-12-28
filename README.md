@@ -101,5 +101,38 @@ kubectl apply -f deployment.yaml
 ```
 <img width="816" alt="image" src="https://github.com/user-attachments/assets/4a5ef480-202c-4c55-b538-2d0ac075fbcf" />
 
+To check if the deployment works well
+```bash
+kubectl get pods
+```
+<img width="554" alt="image" src="https://github.com/user-attachments/assets/93d3c5cc-5c47-464b-a9c1-0bd7721d2174" />
+
+```bash
+kubectl logs nodejs-app-deployment-69cb8f9d85-tb2cg
+```
+<img width="808" alt="image" src="https://github.com/user-attachments/assets/52b889ab-7cac-4dcf-b4ea-7f75b563faa2" />
+
+```bash
+kubectl logs redis-deployment-74dd9754c8-s8pwv
+```
+<img width="917" alt="image" src="https://github.com/user-attachments/assets/a9c4ead3-40e1-466e-be5d-8a3d5862f89b" />
+
+To open the Nodejs pod on port 3000 :
+```bash
+minikube service nodejs-app-service
+```
+<img width="959" alt="image" src="https://github.com/user-attachments/assets/795637d2-180a-4463-b7da-a5988effb2a3" />
+<img width="959" alt="image" src="https://github.com/user-attachments/assets/1e8a3a03-fc88-41bc-84b0-4ca2fde3473d" />
+
+Finally, if you want to delete the deployment and the application, you only have to :
+```bash
+kubectl delete deployment redis-deployment
+kubectl delete deployment nodejs-app-deployment
+kubectl delete service nodejs-app-service
+kubectl delete service redis-service
+kubectl delete pvc redis-pvc
+kubectl delete pv redis-pv
+```
+
 # 7.Istio
 

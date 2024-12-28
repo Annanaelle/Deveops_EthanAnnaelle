@@ -50,6 +50,18 @@ that allows you to see your website on the port 3000 :
 
 # 5.Docker Compose
 
+Execute :
+```bash
+docker compose up
+```
+<img width="784" alt="image" src="https://github.com/user-attachments/assets/0dba103f-cf93-40b2-b6e5-7ad8c8809dfd" />
+
+To stop it :
+```bash
+docker compose down
+```
+<img width="785" alt="image" src="https://github.com/user-attachments/assets/bbc5a325-6771-4e7b-b84c-650d7b80356f" />
+
 
 
 # 6.Kubernetes

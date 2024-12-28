@@ -42,7 +42,7 @@ spec:
     spec:
       containers:
         - name: nodejs-app
-          image: deveops_ethanannaelle/userapi-devops:latest
+          image: annaelleh/deveops_ethanannaelle:userapi-devops
           ports:
             - containerPort: 3000
           env:

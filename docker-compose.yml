@@ -1,4 +1,3 @@
-version: "3"
 services:
   redis:
     container_name: redis-db
@@ -7,7 +6,8 @@ services:
       - "6379:6379"
   userapi:
     container_name: nodejs-webapp
-    image: deveops_ethanannaelle/userapi-devops:latest
+    image: annaelleh/deveops_ethanannaelle:userapi-devops
+    build: userapi
     ports:
       - "3000:3000"
     environment:

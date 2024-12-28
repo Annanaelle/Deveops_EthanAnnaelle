@@ -1,8 +1,23 @@
 # Deveops_EthanAnnaelle
+This work has been made by Ethan Berneau and Annaëlle Houzelle, ING4, GR01, Cybersécurity-INTER
 
 # Introduction
 
 # Prerequisites
+To run this project, you will need all these softwares and app :
+
+- [Git](https://git-scm.com/)
+- [NodeJS](https://nodejs.org/en)
+- [npm](https://www.npmjs.com/)
+- [Redis](https://redis.io/)
+- [Vagrant](https://www.vagrantup.com/)
+- [VirtualBox](https://www.virtualbox.org/)
+- [Docker](https://www.docker.com/)
+- [Docker Compose](https://docs.docker.com/compose/)
+- [Minikube](https://minikube.sigs.k8s.io/docs/start/)
+- [kubectl](https://kubernetes.io/docs/tasks/tools/)
+
+Except the first part, all this tp is working on windows and not on linux.
 
 # 1.Creation of the web application
 
@@ -202,6 +217,41 @@ kubectl get pods
 ```
 <img width="708" alt="image" src="https://github.com/user-attachments/assets/7b84bdeb-9080-4bfb-953a-7080dbb993dc" />
 
+## Install Addon
+Now let's install addon to have all the functionnalities 
+```bash
+kubectl apply -f addons/
+```
+<img width="761" alt="image" src="https://github.com/user-attachments/assets/f8390462-8f74-4401-b8b5-a95db326d255" />
+
+And to check the pods :
+```bash
+kubectl get pods -n istio-system
+```
+<img width="831" alt="image" src="https://github.com/user-attachments/assets/f9339e56-7375-4c4f-a285-94e56e518682" />
+
+To check all the services previously created :
+```bash
+kubectl get services -n istio-system
+```
+<img width="900" alt="image" src="https://github.com/user-attachments/assets/07786935-dfc0-46f0-bbc7-66dc13878861" />
+
+We can test the kialy dashboard :
+```dash
+kubectl port-forward svc/kiali -n istio-system 20001
+```
+<img width="951" alt="image" src="https://github.com/user-attachments/assets/31165ee6-9b03-4d1b-90d5-89be9208d192" />
+
+<img width="959" alt="image" src="https://github.com/user-attachments/assets/17d48f38-179b-4ed1-a319-c3b61f67bbba" />
+
+We can also see the pods managing by isio :
+<img width="959" alt="image" src="https://github.com/user-attachments/assets/6113048e-f7e0-4649-92bc-411f5e2c584d" />
+
+To check if all the services are working well :
+```bash
+kubectl get services -n istio-system
+```
+<img width="865" alt="image" src="https://github.com/user-attachments/assets/5033dd3e-fbac-4ee6-b62a-03fe870aa059" />
 
 
 

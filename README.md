@@ -150,3 +150,61 @@ minikube start --cpus 6 --memory 8192
 ```
 <img width="853" alt="image" src="https://github.com/user-attachments/assets/776402a9-1b2e-4ea6-b249-3c68ebc7503b" />
 
+Then we had C:\Users\Annaëlle\Desktop\ING4\DeveOps - BAUM Stéphan\Deveops_EthanAnnaelle\istio\bin
+to the path of windows, and we execute 
+```bash
+istioctl version
+```
+and 
+```bash
+istioctl
+```
+<img width="959" alt="image" src="https://github.com/user-attachments/assets/f38b2d81-d3e8-467d-a4e6-e2c529d3a122" />
+
+Then we execute :
+```bash
+kubectl get ns
+kubectl get pods
+```
+<img width="860" alt="image" src="https://github.com/user-attachments/assets/3aeff193-7ec1-4f88-a419-49446ce09568" />
+
+Now we install istio :
+```bash
+istioctl install
+```
+<img width="764" alt="image" src="https://github.com/user-attachments/assets/b09097db-fd6d-441d-b24f-5d96ea6569c7" />
+And we check if the 2 pods are well created :
+```bash
+kubectl get ns
+kubectl get pod -n istio-system
+```
+<img width="799" alt="image" src="https://github.com/user-attachments/assets/62fbf54f-ea76-493b-81d9-1eee70146ebc" />
+
+We create a namespace :
+```bash
+kubectl label namespace default istio-injection=enabled
+```
+and check if it works 
+```bash
+kubectl get ns default --show-labels
+```
+<img width="844" alt="image" src="https://github.com/user-attachments/assets/b19b3506-ac47-4800-a166-df94750c7563" />
+
+We now have to apply the manifest we create :
+```bash
+kubectl apply -f manifest.yaml
+```
+<img width="799" alt="image" src="https://github.com/user-attachments/assets/648ce5e9-590d-404c-8b95-1cbed59e7f50" />
+
+Check the pods :
+```bash
+kubectl get pods
+```
+<img width="708" alt="image" src="https://github.com/user-attachments/assets/7b84bdeb-9080-4bfb-953a-7080dbb993dc" />
+
+
+
+
+
+
+

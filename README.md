@@ -65,6 +65,41 @@ docker compose down
 
 
 # 6.Kubernetes
+Kubernetes, often abbreviated as K8s, is an open-source platform designed to automate the deployment, scaling, and management of containerized applications. It provides a framework to run distributed systems resiliently, ensuring the availability and scalability of applications.
+
+## Installation of Kubernetes cluster in minikube
+After the installation of minikube and kubectl on the computer, let's execute this command lines :
+
+```bash
+minikube start
+```
+<img width="857" alt="image" src="https://github.com/user-attachments/assets/5f0b5312-d920-4c17-a60b-9a5365374aa9" />
+
+```bash
+minikube status
+```
+<img width="670" alt="image" src="https://github.com/user-attachments/assets/f8313425-a4f2-4503-a842-b008bc068c67" />
+
+Then, lets deploy the different needed tools to finally deploy the application :
+```bash
+kubectl apply -f redis-pv.yaml
+```
+<img width="800" alt="image" src="https://github.com/user-attachments/assets/4d6616b2-6c5f-448d-819a-a06fe057aca2" />
+
+```bash
+kubectl apply -f redis-pvc.yaml
+```
+<img width="795" alt="image" src="https://github.com/user-attachments/assets/379c0fbc-7338-4368-9778-85acd781467e" />
+
+```bash
+kubectl apply -f service.yaml
+```
+<img width="791" alt="image" src="https://github.com/user-attachments/assets/bea9025e-7121-4dfd-91d4-fdc0848e100b" />
+
+```bash
+kubectl apply -f deployment.yaml
+```
+<img width="816" alt="image" src="https://github.com/user-attachments/assets/4a5ef480-202c-4c55-b538-2d0ac075fbcf" />
 
 # 7.Istio
 

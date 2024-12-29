@@ -25,7 +25,52 @@ Except the first part, all this tp is working on windows and not on linux.
 npm start
 
 # 2.CI/CD Pipeline
+This repository includes a CI/CD pipeline implemented using GitHub Actions. The pipeline is triggered on every push or accepted pull request and is composed of two distinct jobs:
 
+1. **Continuous Integration (CI)**
+2. **Continuous Deployment (CD)**
+
+Following best practices, these jobs are separated to ensure clarity and modularity, even though they could theoretically be combined into one. Each job is executed on a clean GitHub-hosted runner to mimic a production environment and ensure reproducibility.
+
+---
+## **Continuous Integration (CI)**
+
+The Continuous Integration job verifies that any new code (pushed or merged) integrates seamlessly with the existing codebase. This is achieved through a series of automated tests.
+![image](https://github.com/user-attachments/assets/3692b4b4-fbd2-427b-aaad-ab2e5c202ceb)
+
+## **Continuous Deployment (CD)**
+
+The Continuous Deployment job deploys the application to Netlify. By automating this process, we ensure that every successful change is live on the deployment platform without manual intervention.
+![image](https://github.com/user-attachments/assets/a3222e0a-130b-4e28-bf29-6a48dc28dc20)
+
+#### Deploy to Netlify
+```bash
+npm install -g netlify-cli
+netlify deploy --dir=src --prod
+```
+Relies on environment variables for authentication (`NETLIFY_AUTH_TOKEN` and `NETLIFY_SITE_ID`).
+
+The deployment job only runs if the CI job passes successfully. This prevents buggy code from being deployed to production.
+![netlify image](https://github.com/user-attachments/assets/7708d00e-ce60-48dc-85aa-c3be9d42c7f1)
+
+---
+
+## **Pipeline Overview**
+
+When the CI/CD pipeline is triggered, the following workflow is executed:
+
+1. **CI Job**:
+   - Installs Node.js and Redis.
+   - Runs the test suite.
+   - Builds and pushes the Docker image to DockerHub.
+
+2. **CD Job**:
+   - Builds the application.
+   - Deploys the application to Netlify.
+
+If all steps complete successfully, the application is live on Netlify, and the Docker image is up to date on DockerHub.
+
+---
 # 3.Vagrant
 
 # 4.Docker

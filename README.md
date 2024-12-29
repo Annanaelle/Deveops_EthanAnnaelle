@@ -51,6 +51,7 @@ netlify deploy --dir=src --prod
 Relies on environment variables for authentication (`NETLIFY_AUTH_TOKEN` and `NETLIFY_SITE_ID`).
 
 The deployment job only runs if the CI job passes successfully. This prevents buggy code from being deployed to production.
+
 ![netlify image](https://github.com/user-attachments/assets/7708d00e-ce60-48dc-85aa-c3be9d42c7f1)
 
 ---
@@ -71,6 +72,9 @@ When the CI/CD pipeline is triggered, the following workflow is executed:
 If all steps complete successfully, the application is live on Netlify, and the Docker image is up to date on DockerHub.
 
 ---
+Result: 
+![image](https://github.com/user-attachments/assets/908aa224-339d-4683-86f0-0b3dd1a94460)
+
 # 3.Vagrant
 
 # 4.Docker

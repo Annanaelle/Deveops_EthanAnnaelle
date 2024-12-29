@@ -3,13 +3,15 @@ name: Node.js CI
 on:
   push:
     branches:
+      - main
       - master
   pull_request:
     branches:
       - master
+      - main
 
 jobs:
-  build:
+  build-and-test:
     runs-on: ubuntu-latest
     services:
       redis:
@@ -19,15 +21,48 @@ jobs:
     
     steps:
     - name: Checkout code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
       
     - name: Set up Node.js
-      uses: actions/setup-node@v2
+      uses: actions/setup-node@v3
       with:
-        node-version: '14'
+        node-version: '18'
 
     - name: Install dependencies
-      run: npm install
+      run: |
+        cd  userapi
+        npm install
 
-    - name: Run tests
-      run: npm test
+    - name: Run test
+      run: |
+        cd  userapi
+        npm test
+  deploy:
+    needs: build-and-test # La phase "deploy" ne démarre que si "build-and-test" réussit
+    runs-on: ubuntu-latest
+    services:
+      redis:
+        image: redis:alpine
+        ports:
+          - 6379:6379
+    steps:
+      # Étape 1 : Récupérer le code
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      # Étape 2 : Configurer Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      # Étape 3 : Déploiement
+      - name: Deploy to Netlify
+        env:
+          NETLIFY_AUTH_TOKEN: "nfp_wM9LTQh382isABrJ1Tu8Fc9jGhVd1sUP7322"
+          NETLIFY_SITE_ID: "11a9025b-ab77-40d3-95e9-168a25512ebc"
+        run: |
+          cd userapi
+          npm install -g netlify-cli
+          netlify deploy --prod --dir=src
+          

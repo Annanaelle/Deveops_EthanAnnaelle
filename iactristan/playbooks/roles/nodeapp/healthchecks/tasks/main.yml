@@ -1,2 +1,0 @@
-- name: Running Integrity Tests
-  command: "npm run test --prefix /home/vagrant/nodeapp/"

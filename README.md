@@ -147,6 +147,9 @@ cd iac
 ```bash
 vagrant up
 ```
+Finally when we launch wagrant, there is a problem, that we doesn't succeed to solve :
+<img width="598" alt="image" src="https://github.com/user-attachments/assets/86f1cfbb-e2c2-46dc-b43a-bf5155fe2c22" />
+
 ### After a successful setup, the Node.js application will automatically start within the VM:
 
 

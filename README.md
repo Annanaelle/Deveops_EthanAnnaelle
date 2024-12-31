@@ -134,20 +134,20 @@ These tasks ensure that the Node.js application is in a healthy state and ready 
 
 ### Running the application
 
-To run the Node.js application in the VM:
+To execute the Node.js application inside the virtual machine (VM):
 
-1. Make sure that **Vagrant** and **VirtualBox** are installed and configured.
+1. Verify that Vagrant and VirtualBox are installed and set up correctly.
 
-2. Navigate to the `./iac` directory:
+2. Change to the ./iac directory:
 ```bash
 cd iac
 ```
 
-3. Start provisioning and running the VM:
+3. Initiate the VM setup and provisioning by running the following command:
 ```bash
 vagrant up
 ```
-
+### After a successful setup, the Node.js application will automatically start within the VM:
 
 
 # 4.Docker

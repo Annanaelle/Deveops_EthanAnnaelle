@@ -77,6 +77,10 @@ Result:
 
 # 3.Vagrant
 
+```bash
+vagrant plugin install vagrant-vbguest
+```
+
 # 4.Docker
 To make the application compatible with environments like Docker Compose or Kubernetes, the first step is to create a Docker image of the application. This is achieved by defining a Dockerfile, which specifies the steps for building the image.
 

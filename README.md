@@ -75,11 +75,80 @@ If all steps complete successfully, the application is live on Netlify, and the 
 Result: 
 ![image](https://github.com/user-attachments/assets/908aa224-339d-4683-86f0-0b3dd1a94460)
 
-# 3.Vagrant
+# 3. IaC Project: Infrastructure as Code with Vagrant and Ansible
+We use **Vagrant** to configure a virtual machine (VM) and **Ansible** to provision it. This will allow to run a Node.js application using an iac **(Infrastructure as code)** approach.
 
+### VM Creation
+To create and configure a virtual machine, we use **Vagrant**. This part includes:
+
+#### VM Definition
+A VM named "nodeapp_server" is defined using Centos/7
+- **Port Forwarding:** The VM's port 3000 is mapped to the host machine's port 3000.
+- **Resource Configuration:** The VM is configured with specific memory and processor settings.
+
+#### File Provisioning
+The local directory `../userapi` is copied to the VM's `$HOME/nodeapp` directory. This step installs the Node.js application code in the VM.
+This is made possible by **guestAdditionBox** (same version as VirtualBox otherwise it causes bugs) which allows to transfer the files
 ```bash
 vagrant plugin install vagrant-vbguest
 ```
+
+#### Provisioning with Ansible
+A local Ansible playbook (`playbooks/run.yml`) is used to provision the VM. Only tasks with the tags "install" and "integrity" are executed.
+
+#### Provisioning via shell script
+A script `app_launcher.sh` is executed at each provisioning. This script:
+1. Performs integrity tests.
+2. Configures port 3000 for external connections.
+3. Launches the Node.js application.
+
+### Provisioning the VM with Ansible
+In order to configure the VM we will use Ansible.
+
+#### Installation
+The installation is managed by Ansible via a playbook defining all the necessary steps. At the end of this playbook, the VM is fully configured to run the application:
+- Redis is installed and running.
+- Firewalls are configured.
+- Node.js runtime is installed.
+
+#### Main steps of the playbook:
+1. **Installing required packages:**
+- Uses the yum module to install the different packages like Nodejs, npm , curl, redis,...
+2. **Activating and starting SSH:**
+- Makes sure that the SSH service is active and configured to start automatically.
+
+3. **Configure firewalls:**
+- Reload the `firewalld` service to enforce the new rules and persistent access for http and https services
+
+4. **Install Node.js modules:**
+- Install Node.js dependencies via `npm` in the `/home/vagrant/nodeapp/` directory.
+
+#### Health tests
+An additional playbook is used to perform health checks. These tests validate that the environment is ready to host the application.
+
+- **Run tests:**
+- Run a health check command.
+- Run `npm run test` in the `/home/vagrant/nodeapp/` directory to ensure that all tests pass successfully.
+
+These tasks ensure that the Node.js application is in a healthy state and ready to be deployed.
+
+### Running the application
+
+To run the Node.js application in the VM:
+
+1. Make sure that **Vagrant** and **VirtualBox** are installed and configured.
+
+2. Navigate to the `./iac` directory:
+```bash
+cd iac
+```
+
+3. Start provisioning and running the VM:
+```bash
+vagrant up
+```
+
+
 
 # 4.Docker
 To make the application compatible with environments like Docker Compose or Kubernetes, the first step is to create a Docker image of the application. This is achieved by defining a Dockerfile, which specifies the steps for building the image.
